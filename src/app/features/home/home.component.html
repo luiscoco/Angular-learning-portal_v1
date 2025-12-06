@@ -1,0 +1,72 @@
+<section class="hero">
+  <div class="hero-grid">
+    <div class="hero-main card">
+      <div class="pill">Learning path · Angular</div>
+      <h1>Build your Angular skills with a structured portal.</h1>
+      <p class="hero-subtitle">
+        This mini-portal is your sandbox: explore curated courses, track lessons and evolve this project
+        as you learn more about Angular, architecture and best practices.
+      </p>
+
+      <div class="hero-actions">
+        <a routerLink="/courses" class="btn-primary">
+          Browse all courses
+        </a>
+      </div>
+
+      <ul class="hero-metas">
+        <li><strong>3</strong><span>Sample courses to start from</span></li>
+        <li><strong>Practical</strong><span>Designed as a real-world codebase</span></li>
+        <li><strong>Expandable</strong><span>Add routes, modules and APIs as you grow</span></li>
+      </ul>
+    </div>
+
+    <div class="hero-side card">
+      <h2>Today&apos;s focus</h2>
+      <p class="hero-side-text">
+        Pick one concept (components, routing, state, forms…) and implement a small improvement in this portal.
+        Commit, repeat, and you&apos;ll have a real learning log.
+      </p>
+
+      <ul class="hero-side-list">
+        <li>✅ Explore the router configuration</li>
+        <li>✅ Add a new course or lesson in <code>CourseService</code></li>
+        <li>⬜ Persist progress in localStorage or an API</li>
+      </ul>
+    </div>
+  </div>
+
+  <section class="home-section">
+    <div class="home-section-header">
+      <h2>Featured learning paths</h2>
+      <p>Start simple, then extend these courses with your own lessons, exercises and links.</p>
+    </div>
+
+    <div class="courses-grid">
+      <article class="course-card" *ngFor="let course of featuredCourses">
+        <header>
+          <div class="course-pill">{{ course.level | titlecase }}</div>
+          <h3>{{ course.title }}</h3>
+          <p class="course-tagline">{{ course.tagLine }}</p>
+        </header>
+
+        <p class="course-description">{{ course.description }}</p>
+
+        <ul class="course-topics">
+          <li *ngFor="let topic of course.topics.slice(0, 4)">
+            • {{ topic }}
+          </li>
+        </ul>
+
+        <footer class="course-footer">
+          <span class="course-meta">
+            ~ {{ course.estimatedWeeks }} weeks · {{ course.lessons.length }} lessons
+          </span>
+          <a [routerLink]="['/courses', course.id]" class="course-link">
+            View course →
+          </a>
+        </footer>
+      </article>
+    </div>
+  </section>
+</section>

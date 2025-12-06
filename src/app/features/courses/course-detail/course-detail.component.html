@@ -1,0 +1,57 @@
+<section class="page" *ngIf="course as c; else notFound">
+  <header class="page-header">
+    <div>
+      <div class="pill">{{ c.level | titlecase }} · ~ {{ c.estimatedWeeks }} weeks</div>
+      <h1>{{ c.title }}</h1>
+      <p class="page-subtitle">
+        {{ c.description }}
+      </p>
+    </div>
+
+    <a routerLink="/courses" class="back-link">← Back to all courses</a>
+  </header>
+
+  <section class="layout">
+    <div class="layout-main card">
+      <h2>Lessons</h2>
+      <p class="layout-subtitle">
+        Use this section to link to actual lesson content: GitHub repos, StackBlitz projects,
+        Notion pages or a markdown CMS.
+      </p>
+
+      <ul class="lessons-list">
+        <li *ngFor="let lesson of c.lessons">
+          <div class="lesson-main">
+            <h3>{{ lesson.title }}</h3>
+            <p class="lesson-meta">
+              {{ lesson.level | titlecase }} · {{ lesson.duration }}
+            </p>
+          </div>
+          <button class="btn-primary" (click)="openLesson(lesson)">
+            Open lesson
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    <aside class="layout-side card">
+      <h3>Topics covered</h3>
+      <ul class="topics">
+        <li *ngFor="let topic of c.topics">• {{ topic }}</li>
+      </ul>
+
+      <h3 class="mt">How to extend this page</h3>
+      <ul class="side-tips">
+        <li>Add a progress tracker using localStorage or an API.</li>
+        <li>Link each lesson to a YouTube video or live coding session.</li>
+        <li>Load course definitions from JSON or a backend.</li>
+      </ul>
+    </aside>
+  </section>
+</section>
+
+<ng-template #notFound>
+  <section class="page">
+    <p>Course not found. <a routerLink="/courses" class="back-link">Back to courses</a></p>
+  </section>
+</ng-template>

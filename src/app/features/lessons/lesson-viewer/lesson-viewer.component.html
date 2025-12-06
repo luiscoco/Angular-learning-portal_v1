@@ -1,0 +1,31 @@
+<section class="page" *ngIf="lessonTitle; else notFound">
+  <header class="page-header">
+    <div>
+      <div class="pill">{{ meta }}</div>
+      <h1>{{ lessonTitle }}</h1>
+      <p class="page-subtitle">
+        Course: {{ courseTitle }}
+      </p>
+    </div>
+
+    <button class="back-link" (click)="goBackToCourse()">
+      ← Back to course
+    </button>
+  </header>
+
+  <div class="card markdown">
+    <h2>Lesson content placeholder</h2>
+    <p>
+      This viewer is intentionally simple. Replace this with a real markdown renderer, code blocks, or an
+      embedded StackBlitz project for live coding.
+    </p>
+
+    <pre>{{ markdownSample }}</pre>
+  </div>
+</section>
+
+<ng-template #notFound>
+  <section class="page">
+    <p>Lesson not found. <a routerLink="/courses" class="back-link">Back to courses</a></p>
+  </section>
+</ng-template>

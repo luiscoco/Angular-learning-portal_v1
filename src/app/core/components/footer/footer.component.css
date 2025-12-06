@@ -1,0 +1,16 @@
+.footer-root {
+  border-top: 1px solid rgba(148, 163, 184, 0.3);
+  background: radial-gradient(circle at bottom, rgba(15,23,42,0.95), rgba(2,6,23,1));
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+}

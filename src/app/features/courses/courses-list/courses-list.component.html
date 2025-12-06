@@ -1,0 +1,66 @@
+<section class="page">
+  <header class="page-header">
+    <div>
+      <div class="pill">Learning catalogue</div>
+      <h1>Courses</h1>
+      <p class="page-subtitle">
+        Browse all the Angular learning paths defined in this portal. Clone this view and adapt it for
+        your own curriculum (React, .NET, Java…).
+      </p>
+    </div>
+  </header>
+
+  <div class="filters card">
+    <div class="filters-row">
+      <div class="filters-group">
+        <label>Search</label>
+        <input
+          type="text"
+          [(ngModel)]="searchTerm"
+          placeholder="Filter by title or description..."
+        />
+      </div>
+
+      <div class="filters-group">
+        <label>Level</label>
+        <select [(ngModel)]="levelFilter">
+          <option value="all">All levels</option>
+          <option value="beginner">Beginner</option>
+          <option value="intermediate">Intermediate</option>
+          <option value="advanced">Advanced</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="courses-grid">
+    <article class="course-card" *ngFor="let course of filteredCourses">
+      <header>
+        <div class="course-pill">{{ course.level | titlecase }}</div>
+        <h2>{{ course.title }}</h2>
+        <p class="course-tagline">{{ course.tagLine }}</p>
+      </header>
+
+      <p class="course-description">{{ course.description }}</p>
+
+      <ul class="course-topics">
+        <li *ngFor="let topic of course.topics">
+          • {{ topic }}
+        </li>
+      </ul>
+
+      <footer class="course-footer">
+        <span class="course-meta">
+          ~ {{ course.estimatedWeeks }} weeks · {{ course.lessons.length }} lessons
+        </span>
+        <a [routerLink]="['/courses', course.id]" class="course-link">
+          Open course →
+        </a>
+      </footer>
+    </article>
+
+    <p *ngIf="!filteredCourses.length" class="empty-state">
+      No courses match your filters yet. Try clearing the search or level filters.
+    </p>
+  </div>
+</section>
